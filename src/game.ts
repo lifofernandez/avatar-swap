@@ -10,7 +10,7 @@ engine.addEntity(base)
 const arissa = new Arissa(new GLTFShape("models/arissa.glb"), new Transform({ position: new Vector3(0, 0.05, -0.10), scale: new Vector3(0, 0, 0)}))
 arissa.setParent(Attachable.AVATAR)
 
-// Hide Avatars
+// Hide avatars
 const hideAvatarsEntity = new Entity()
 hideAvatarsEntity.addComponent(new AvatarModifierArea({ area: { box: new Vector3(16, 4, 11) }, modifiers: [AvatarModifiers.HIDE_AVATARS] }))
 hideAvatarsEntity.addComponent(new Transform({ position: new Vector3(8, 2, 10.5) }))
