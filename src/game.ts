@@ -47,6 +47,8 @@ hideAvatarsEntity.addComponent(
 // Check if player is moving
 let currentPosition = new Vector3()
 
+
+
 class CheckPlayerIsMovingSystem implements ISystem {
   update() {
     if (currentPosition.equals(Camera.instance.position)) {
