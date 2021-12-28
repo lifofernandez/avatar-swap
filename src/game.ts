@@ -1,10 +1,6 @@
 import * as utils from '@dcl/ecs-scene-utils'
 import { Arissa } from './arissa'
 
-// Base
-//const base = new Entity()
-//base.addComponent(new GLTFShape('models/baseGrass.glb'))
-//engine.addEntity(base)
 
 // Arissa
 const arissa = new Arissa(
@@ -15,55 +11,6 @@ const arissa = new Arissa(
   })
 )
 arissa.setParent(Attachable.AVATAR)
-
-//let box = new Entity()
-//box.addComponent(
-//  new Transform({
-//    position: new Vector3(8, 0, 10.5),
-//    scale: new Vector3(16, 0, 11),
-//  })
-//)
-//
-//box.addComponent(new BoxShape())
-//
-////Create material and configure its fields
-//const myMaterial = new Material()
-//myMaterial.albedoColor = Color3.Blue()
-//myMaterial.metallic = 0.9
-//myMaterial.roughness = 0.1
-//
-////Assign the material to the entity
-//box.addComponent(myMaterial)
-//
-//engine.addEntity(box)
-//
-//// Hide avatars
-//const hideAvatarsEntity = new Entity()
-//hideAvatarsEntity.addComponent(
-//  new AvatarModifierArea({
-//    area: { box: new Vector3(16, 4, 11) },
-//    modifiers: [AvatarModifiers.HIDE_AVATARS],
-//  })
-//)
-//hideAvatarsEntity.addComponent(
-//  new Transform({ position: new Vector3(8, 2, 10.5) })
-//)
-//engine.addEntity(hideAvatarsEntity)
-//
-//// Create to show Arissa avatar
-//hideAvatarsEntity.addComponent(
-//  new utils.TriggerComponent(
-//    new utils.TriggerBoxShape(new Vector3(16, 4, 11), Vector3.Zero()),
-//    {
-//      onCameraEnter: () => {
-//        arissa.getComponent(Transform).scale.setAll(1)
-//      },
-//      onCameraExit: () => {
-//        arissa.getComponent(Transform).scale.setAll(0)
-//      },
-//    }
-//  )
-//)
 
 // Check if player is moving
 let currentPosition = new Vector3()
@@ -81,7 +28,8 @@ class CheckPlayerIsMovingSystem implements ISystem {
 engine.addSystem(new CheckPlayerIsMovingSystem())
 
 
-
+// Move System
+// https://docs.decentraland.org/development-guide/move-entities/#follow-a-path
 const point1 = new Vector3(1, 1, 1)
 const point2 = new Vector3(8, 1, 3)
 const point3 = new Vector3(8, 4, 7)
@@ -120,6 +68,7 @@ engine.addSystem(new PatrolPath())
 
 const myEntity = new Entity()
 
+// Hide original avatar
 myEntity.addComponent(
   new AvatarModifierArea({
     area: { box: new Vector3(2, 2, 2) },
@@ -129,9 +78,11 @@ myEntity.addComponent(
 
 myEntity.addComponent(new Transform())
 myEntity.addComponent(new BoxShape())
+myEntity.getComponent(BoxShape).withCollisions = false
 myEntity.addComponent(new PathData())
 
 // Create to show Arissa avatar
+// https://docs.decentraland.org/development-guide/utils/#triggers
 myEntity.addComponent(
   new utils.TriggerComponent(
     new utils.TriggerBoxShape(
@@ -150,4 +101,7 @@ myEntity.addComponent(
 )
 
 engine.addEntity(myEntity)
+
+
+
 
