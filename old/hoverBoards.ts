@@ -218,7 +218,7 @@ executeTask(async () => {
   const hoverBoards = new HoverBoards();
   engine.addSystem(hoverBoards);
 
-hoverBoards.addBoard(new Vector3(3,0.5,3), 0);
+hoverBoards.addBoard(new Vector3(8,0.5,8), 0);
 //  hoverBoards.addBoard(new Vector3(136.5, 0.5, 43.5), 0);
 //  hoverBoards.addBoard(new Vector3(136.5, 0.5, 40.4), 0);
 //  hoverBoards.addBoard(new Vector3(136.5, 0.5, 37.2), 0);
